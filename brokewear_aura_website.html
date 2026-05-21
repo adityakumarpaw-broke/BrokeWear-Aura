@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BrokeWear Aura — Break the line. Own the vibe.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111111;
+    --off-white: #F5F3EE;
+    --purple: #7F77DD;
+    --purple-dark: #534AB7;
+    --coral: #D85A30;
+    --gray: #B4B2A9;
+    --gray-light: #E8E6E1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--purple);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, background 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(127,119,221,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease, width 0.2s, height 0.2s;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3rem;
+    backdrop-filter: blur(12px);
+    background: rgba(17,17,17,0.7);
+    border-bottom: 0.5px solid rgba(245,243,238,0.08);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-icon {
+    width: 36px; height: 36px;
+    background: var(--off-white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--off-white);
+    line-height: 1;
+  }
+
+  .nav-wordmark span {
+    color: var(--purple);
+    font-size: 11px;
+    display: block;
+    letter-spacing: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--off-white); }
+
+  .nav-cta {
+    background: var(--off-white);
+    color: var(--black) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(127,119,221,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(216,90,48,0.08) 0%, transparent 60%);
+  }
+
+  .hero-noise {
+    position: absolute; inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--purple);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.92;
+    letter-spacing: -1px;
+    color: var(--off-white);
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-headline .accent { color: var(--purple); }
+  .hero-headline .coral { color: var(--coral); }
+
+  .hero-sub {
+    font-size: clamp(14px, 1.5vw, 17px);
+    color: var(--gray);
+    margin-top: 2rem;
+    max-width: 420px;
+    line-height: 1.7;
+    font-style: italic;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--off-white);
+    color: var(--black);
+    padding: 14px 32px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--purple); color: var(--off-white); transform: translateY(-2px); }
+
+  .btn-ghost {
+    color: var(--off-white);
+    padding: 14px 24px;
+    border: 0.5px solid rgba(245,243,238,0.25);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 3rem;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--gray);
+    display: flex; align-items: center; gap: 10px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--gray);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--purple);
+    animation: scrollAnim 2s infinite;
+  }
+
+  @keyframes scrollAnim { to { left: 100%; } }
+
+  /* Marquee */
+  .marquee-section {
+    border-top: 0.5px solid rgba(245,243,238,0.08);
+    border-bottom: 0.5px solid rgba(245,243,238,0.08);
+    padding: 1rem 0;
+    overflow: hidden;
+    background: rgba(127,119,221,0.06);
+  }
+
+  .marquee-track {
+    display: flex; gap: 3rem;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+
+  .marquee-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--purple);
+  }
+
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* Section commons */
+  section { padding: 6rem 3rem; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--purple); }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--off-white);
+    margin-bottom: 1rem;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 400px;
+  }
+
+  .about-box {
+    position: absolute;
+    border-radius: 4px;
+  }
+
+  .about-box-1 {
+    inset: 0;
+    background: rgba(127,119,221,0.08);
+    border: 0.5px solid rgba(127,119,221,0.2);
+  }
+
+  .about-box-inner {
+    position: absolute;
+    inset: 2rem;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+  }
+
+  .about-icon-wrap {
+    width: 100px; height: 100px;
+    background: var(--black);
+    border-radius: 20px;
+    border: 0.5px solid rgba(127,119,221,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-stat {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: var(--purple);
+    line-height: 1;
+  }
+
+  .about-stat-label {
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .about-text p {
+    color: var(--gray);
+    line-height: 1.9;
+    font-size: 15px;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .pill {
+    padding: 6px 16px;
+    border: 0.5px solid rgba(245,243,238,0.15);
+    border-radius: 99px;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+  .pill.accent { border-color: var(--purple); color: var(--purple); }
+
+  /* Products */
+  .products { background: rgba(245,243,238,0.02); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 3rem;
+    border: 1.5px solid rgba(245,243,238,0.06);
+  }
+
+  .product-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    border: 0.5px solid rgba(245,243,238,0.06);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .product-card:hover { background: rgba(127,119,221,0.05); }
+  .product-card:hover .product-arrow { opacity: 1; transform: translate(0, 0); }
+
+  .product-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: rgba(245,243,238,0.06);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .product-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(127,119,221,0.12);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 20px;
+  }
+
+  .product-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .product-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--purple);
+    letter-spacing: 1px;
+  }
+
+  .product-arrow {
+    position: absolute; bottom: 1.5rem; right: 1.5rem;
+    width: 32px; height: 32px;
+    border: 0.5px solid rgba(127,119,221,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transform: translate(4px, 4px);
+    transition: opacity 0.2s, transform 0.2s;
+    font-size: 14px;
+    color: var(--purple);
+  }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .step {
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, var(--purple), transparent);
+  }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(127,119,221,0.2);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* Testimonials */
+  .testimonials { background: rgba(127,119,221,0.04); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial-card {
+    background: var(--black);
+    border: 0.5px solid rgba(245,243,238,0.08);
+    border-radius: 4px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .testimonial-card:hover { border-color: rgba(127,119,221,0.3); }
+
+  .stars {
+    color: var(--purple);
+    font-size: 14px;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+    color: var(--off-white);
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .author-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(127,119,221,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--purple);
+  }
+
+  .author-name { font-size: 13px; font-weight: 500; color: var(--off-white); }
+  .author-city { font-size: 11px; color: var(--gray); }
+
+  /* Order CTA */
+  .order-cta {
+    text-align: center;
+    padding: 8rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .order-cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(127,119,221,0.15) 0%, transparent 70%);
+  }
+
+  .order-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .order-cta p {
+    font-size: 15px;
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .order-actions {
+    display: flex; gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .whatsapp-btn {
+    background: #25D366;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 8px;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .whatsapp-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* Footer */
+  footer {
+    border-top: 0.5px solid rgba(245,243,238,0.08);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--off-white);
+  }
+
+  .footer-logo span { color: var(--purple); }
+
+  .footer-links {
+    display: flex; gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--purple); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(180,178,169,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  /* Order modal */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #191919;
+    border: 0.5px solid rgba(245,243,238,0.1);
+    border-radius: 6px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 440px;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--off-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .modal-sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: rgba(245,243,238,0.04);
+    border: 0.5px solid rgba(245,243,238,0.12);
+    border-radius: 2px;
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--purple);
+  }
+  .form-select option { background: #191919; }
+  .form-textarea { resize: vertical; min-height: 80px; }
+
+  .modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: none; border: none;
+    color: var(--gray); font-size: 20px; cursor: none;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--off-white); }
+
+  .modal { position: relative; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--purple);
+    color: white;
+    border: none;
+    padding: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--purple-dark); transform: translateY(-1px); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid, .products-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-icon">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="#7F77DD" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <circle cx="11" cy="11" r="5.5" stroke="#7F77DD" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <circle cx="11" cy="11" r="2.5" stroke="#111" stroke-width="0" fill="#7F77DD"/>
+        <line x1="2" y1="11" x2="7.5" y2="11" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="8.8" cy="11" r="1.1" fill="#7F77DD"/>
+        <line x1="10.2" y1="11" x2="20" y2="11" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="11" y1="2" x2="11" y2="8" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="11" y1="14" x2="11" y2="20" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="nav-wordmark">BrokeWear<span>AURA</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#order" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-tag">Indore's rawest streetwear brand</div>
+  <h1 class="hero-headline">
+    BREAK<br>
+    THE<br>
+    <span class="accent">LINE.</span>
+  </h1>
+  <p class="hero-sub">Custom printed t-shirts that carry your energy. Minimal. Raw. Unapologetic.</p>
+  <div class="hero-actions">
+    <a href="#order" class="btn-primary" onclick="openModal()">Order Custom Tee</a>
+    <a href="#products" class="btn-ghost">See Designs</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll to explore
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">BROKEWEAR AURA <div class="marquee-dot"></div></div>
+    <div class="marquee-item">CUSTOM T-SHIRTS <div class="marquee-dot"></div></div>
+    <div class="marquee-item">BREAK THE LINE <div class="marquee-dot"></div></div>
+    <div class="marquee-item">OWN THE VIBE <div class="marquee-dot"></div></div>
+    <div class="marquee-item">INDORE STREETWEAR <div class="marquee-dot"></div></div>
+    <div class="marquee-item">MINIMAL ART <div class="marquee-dot"></div></div>
+    <div class="marquee-item">BROKEWEAR AURA <div class="marquee-dot"></div></div>
+    <div class="marquee-item">CUSTOM T-SHIRTS <div class="marquee-dot"></div></div>
+    <div class="marquee-item">BREAK THE LINE <div class="marquee-dot"></div></div>
+    <div class="marquee-item">OWN THE VIBE <div class="marquee-dot"></div></div>
+    <div class="marquee-item">INDORE STREETWEAR <div class="marquee-dot"></div></div>
+    <div class="marquee-item">MINIMAL ART <div class="marquee-dot"></div></div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">Who we are</div>
+  <div class="section-title">BORN BROKE.<br>BUILT DIFFERENT.</div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-box about-box-1"></div>
+      <div class="about-box-inner">
+        <div style="text-align:center;">
+          <div class="about-stat">100%</div>
+          <div class="about-stat-label">Custom — your design, your way</div>
+        </div>
+        <div style="width:80%;height:0.5px;background:rgba(245,243,238,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--coral);">₹0</div>
+          <div class="about-stat-label">Minimum order on some designs</div>
+        </div>
+        <div style="width:80%;height:0.5px;background:rgba(245,243,238,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--purple);">48hr</div>
+          <div class="about-stat-label">Delivery in Indore</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p>We started BrokeWear Aura because we were tired of boring t-shirts. We wanted something raw, minimal, and real — clothes that actually carry your energy.</p>
+      <p>Every design is intentional. Every line means something. We are not a factory — we are a studio run by people who actually care about what you wear.</p>
+      <p>Based in Indore. Shipping across India. No minimum order. No nonsense.</p>
+      <div class="about-pills">
+        <span class="pill accent">Custom printing</span>
+        <span class="pill">Minimal designs</span>
+        <span class="pill accent">Fast delivery</span>
+        <span class="pill">No min. order</span>
+        <span class="pill accent">Made in Indore</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="products">
+  <div class="section-label">What we offer</div>
+  <div class="section-title">OUR DROPS</div>
+  <div class="products-grid" id="productsGrid">
+    <!-- Dynamically loaded from Admin Panel via localStorage -->
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how">
+  <div class="section-label">The process</div>
+  <div class="section-title">HOW IT WORKS</div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">DM or Order</div>
+      <div class="step-desc">WhatsApp us or fill the order form. Tell us what you want — size, color, design idea.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">We Design</div>
+      <div class="step-desc">Our team creates a mockup for your approval. You see it before we print anything.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">We Print</div>
+      <div class="step-desc">Once approved we print on premium fabric using high-quality DTF or screen printing.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">You Wear</div>
+      <div class="step-desc">Delivered to your door in 48 hours (Indore) or 5–7 days across India. That's it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="section-label">Real people, real vibes</div>
+  <div class="section-title">THEY WORE IT.</div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Got my oversized tee in 2 days. Quality is insane for the price. The print hasn't faded even after 10 washes."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">RK</div>
+        <div>
+          <div class="author-name">Rahul K.</div>
+          <div class="author-city">Indore, MP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Ordered 30 tees for our college fest. They delivered on time, pricing was great and everyone loved the design."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">PS</div>
+        <div>
+          <div class="author-name">Priya S.</div>
+          <div class="author-city">IET DAVV, Indore</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Sent them my own artwork and they printed it perfectly. No other brand in Indore gives this quality at this price."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">AM</div>
+        <div>
+          <div class="author-name">Aryan M.</div>
+          <div class="author-city">Bhopal, MP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="order-cta" id="order">
+  <div class="order-cta-bg"></div>
+  <h2>YOUR AURA.<br>YOUR TEE.</h2>
+  <p>DM us on WhatsApp or fill the order form — we'll get back in under 2 hours.</p>
+  <div class="order-actions">
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20BrokeWear%20Aura!%20I%20want%20to%20order%20a%20custom%20tee." class="whatsapp-btn" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Us
+    </a>
+    <button class="btn-primary" onclick="openModal()">Fill Order Form</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">BrokeWear <span>AURA</span></div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="https://instagram.com/brokewear.aura" target="_blank">Instagram</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 BrokeWear Aura. Indore, India.</div>
+</footer>
+
+<!-- Order Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">ORDER NOW</div>
+    <div class="modal-sub">Fill this in and we'll DM you within 2 hours.</div>
+    <div class="form-group">
+      <label class="form-label">Your name</label>
+      <input type="text" class="form-input" placeholder="Rahul Kumar"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">WhatsApp number</label>
+      <input type="text" class="form-input" placeholder="+91 98765 43210"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Product type</label>
+      <select class="form-select" id="modal-product-select">
+        <option>Classic Tee — from ₹349</option>
+        <option>Oversized Drop — from ₹499</option>
+        <option>Custom Design — from ₹449</option>
+        <option>Group Order (10+) — from ₹249</option>
+        <option>Brand Merch — Get Quote</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Design idea / message</label>
+      <textarea class="form-textarea" placeholder="Tell us what you have in mind..."></textarea>
+    </div>
+    <button class="form-submit" onclick="submitOrder()">Send Order Request →</button>
+  </div>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  function submitOrder() {
+    alert('Order request sent! We will WhatsApp you within 2 hours. 🔥');
+    closeModal();
+  }
+
+  // ── Load products from shared localStorage (set by Admin Panel) ──
+  function loadProducts() {
+    const grid = document.getElementById('productsGrid');
+    const stored = localStorage.getItem('bwa_products');
+    const products = stored ? JSON.parse(stored) : [];
+    const active = products.filter(p => p.status === 'active');
+
+    // Update order modal select options dynamically
+    const sel = document.getElementById('modal-product-select');
+    if (sel && active.length > 0) {
+      sel.innerHTML = active.map(p =>
+        `<option>₹${p.price} — ${p.name}</option>`
+      ).join('');
+    }
+
+    if (active.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:4rem 2rem;">
+          <div style="font-size:48px;margin-bottom:1rem;opacity:0.3;">📦</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gray);letter-spacing:2px;">NO PRODUCTS YET</div>
+          <div style="font-size:13px;color:var(--gray);margin-top:0.5rem;">Add products from the Admin Panel to show them here.</div>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = active.map((p, i) => `
+      <div class="product-card reveal" style="animation-delay:${i * 0.07}s">
+        ${p.mockupImg
+          ? `<div class="product-mockup-img" style="width:100%;height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;background:rgba(245,243,238,0.03);border-radius:4px;overflow:hidden;border:0.5px solid rgba(245,243,238,0.06);">
+               <img src="${p.mockupImg}" alt="${p.name}" style="height:145px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));" loading="lazy"/>
+             </div>`
+          : `<div class="product-num">${String(i + 1).padStart(2, '0')}</div>
+             <div class="product-icon">${p.icon || '👕'}</div>`
+        }
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc || ''}</div>
+        <div class="product-price">
+          FROM ₹${p.price}
+          ${p.compare ? `<span style="text-decoration:line-through;font-size:13px;color:var(--gray);margin-left:6px;">₹${p.compare}</span>` : ''}
+        </div>
+        ${p.sizes ? `<div style="font-size:11px;color:var(--gray);margin-top:6px;letter-spacing:0.05em;">${p.sizes}</div>` : ''}
+        <div class="product-arrow" onclick="quickOrder('${p.name.replace(/'/g, "\'")}')">→</div>
+      </div>
+    `).join('');
+
+    // Re-run observer on newly added cards
+    document.querySelectorAll('#productsGrid .reveal').forEach(el => observer.observe(el));
+  }
+
+  function quickOrder(name) {
+    const sel = document.getElementById('modal-product-select');
+    if (sel) {
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.includes(name)) { sel.selectedIndex = i; break; }
+      }
+    }
+    openModal();
+  }
+
+  // Run on page load
+  loadProducts();
+
+  // Auto-refresh if admin makes changes in another tab
+  window.addEventListener('storage', e => {
+    if (e.key === 'bwa_products') loadProducts();
+  });
+</script>
+</body>
+</html>
