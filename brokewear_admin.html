@@ -264,35 +264,54 @@ body{background:var(--bg);color:var(--off);font-family:'DM Sans',sans-serif;font
 .emoji-opt:hover,.emoji-opt.selected{border-color:var(--border-active);background:var(--purple-dim);}
 /* Mockup section */
 .mockup-section{margin-top:1rem;}
-.mockup-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
-.mockup-tab{padding:5px 12px;border-radius:3px;font-size:11px;letter-spacing:0.08em;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--gray);font-family:'DM Sans',sans-serif;transition:all 0.15s;}
-.mockup-tab:hover{color:var(--off);}
-.mockup-tab.active{background:var(--purple-dim);color:var(--purple);border-color:var(--border-active);}
-.mockup-wrap{display:flex;gap:1rem;align-items:flex-start;}
-.mockup-canvas-wrap{flex:1;background:var(--bg);border:0.5px solid var(--border);border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:200px;}
-.mockup-controls{width:160px;display:flex;flex-direction:column;gap:8px;}
-.ctrl-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-bottom:3px;}
+.mkp-canvas-outer{position:relative;width:100%;background:var(--bg);border:0.5px solid var(--border);border-radius:6px;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;}
+.mkp-drop-zone{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background 0.2s;}
+.mkp-drop-zone:hover{background:rgba(127,119,221,0.05);}
+.mkp-drop-icon{font-size:36px;opacity:0.3;}
+.mkp-drop-text{font-size:12px;color:var(--gray);letter-spacing:0.05em;text-align:center;line-height:1.6;}
+.mkp-drop-btn{padding:7px 16px;border-radius:3px;background:var(--purple-dim);color:var(--purple);border:0.5px solid var(--border-active);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.15s;}
+.mkp-drop-btn:hover{background:rgba(127,119,221,0.22);}
+#mockupCanvas{display:block;width:100%;height:auto;cursor:crosshair;}
+.mkp-toolbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center;}
+.mkp-tool-btn{padding:5px 11px;border-radius:3px;font-size:11px;letter-spacing:0.05em;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--gray);font-family:'DM Sans',sans-serif;transition:all 0.15s;white-space:nowrap;}
+.mkp-tool-btn:hover{color:var(--off);border-color:rgba(255,255,255,0.15);}
+.mkp-tool-btn.active{background:var(--purple-dim);color:var(--purple);border-color:var(--border-active);}
+.mkp-tool-btn.green{background:var(--green-dim);color:var(--green);border-color:rgba(76,175,125,0.3);}
+.mkp-tool-btn.green:hover{background:rgba(76,175,125,0.2);}
+.mkp-tool-btn.red{background:var(--coral-dim);color:var(--coral);border-color:rgba(216,90,48,0.3);}
+.mkp-panels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.mkp-panel{background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:10px;}
+.mkp-panel-full{background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:10px;margin-top:8px;}
+.ctrl-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;display:block;}
 .color-swatches{display:flex;flex-wrap:wrap;gap:5px;}
-.color-swatch{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color 0.15s;}
+.color-swatch{width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color 0.15s;flex-shrink:0;}
 .color-swatch.selected{border-color:var(--purple);}
-.print-colors{display:flex;flex-wrap:wrap;gap:5px;}
-.print-color{width:22px;height:22px;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:border-color 0.15s;}
-.print-color.selected{border-color:var(--purple);}
-.print-text-input{width:100%;background:var(--bg3);border:0.5px solid var(--border);border-radius:3px;padding:6px 8px;font-size:12px;color:var(--off);outline:none;font-family:'DM Sans',sans-serif;}
-.print-text-input:focus{border-color:var(--border-active);}
-.mockup-download{width:100%;padding:7px;border-radius:3px;background:var(--green-dim);color:var(--green);border:0.5px solid rgba(76,175,125,0.3);font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;cursor:pointer;transition:all 0.15s;text-align:center;}
+.mkp-slider{width:100%;accent-color:var(--purple);margin-top:2px;}
+.mkp-text-row{display:flex;gap:6px;align-items:center;}
+.mkp-text-input{flex:1;background:var(--bg);border:0.5px solid var(--border);border-radius:3px;padding:6px 8px;font-size:12px;color:var(--off);outline:none;font-family:'DM Sans',sans-serif;}
+.mkp-text-input:focus{border-color:var(--border-active);}
+.mkp-select{width:100%;background:var(--bg);border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;font-size:12px;color:var(--off);outline:none;margin-top:4px;}
+.mkp-select:focus{border-color:var(--border-active);}
+.mkp-select option{background:var(--bg3);}
+.mockup-download{width:100%;padding:8px;border-radius:3px;background:var(--green-dim);color:var(--green);border:0.5px solid rgba(76,175,125,0.3);font-size:12px;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;cursor:pointer;transition:all 0.15s;text-align:center;margin-top:8px;}
 .mockup-download:hover{background:rgba(76,175,125,0.2);}
-.mockup-import-btn{width:100%;padding:7px;border-radius:3px;background:var(--purple-dim);color:var(--purple);border:0.5px solid var(--border-active);font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;cursor:pointer;transition:all 0.15s;text-align:center;margin-bottom:4px;}
-.mockup-import-btn:hover{background:rgba(127,119,221,0.2);}
-.import-mode-bar{display:flex;gap:4px;margin-bottom:8px;}
-.import-mode-btn{flex:1;padding:5px 6px;border-radius:3px;font-size:11px;letter-spacing:0.05em;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--gray);font-family:'DM Sans',sans-serif;transition:all 0.15s;text-align:center;}
-.import-mode-btn:hover{color:var(--off);}
-.import-mode-btn.active{background:var(--purple-dim);color:var(--purple);border-color:var(--border-active);}
-.import-img-preview{width:100%;height:60px;object-fit:contain;border-radius:4px;border:0.5px solid var(--border);background:var(--bg);display:none;margin-top:4px;}
-.mockup-pos-controls{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px;}
-.pos-btn{padding:4px;border-radius:3px;background:var(--bg3);border:0.5px solid var(--border);color:var(--gray);font-size:11px;cursor:pointer;text-align:center;transition:all 0.15s;}
-.pos-btn:hover{color:var(--off);border-color:rgba(255,255,255,0.15);}
-.size-slider{width:100%;accent-color:var(--purple);margin-top:4px;}
+/* Multi-mockup thumbnail strip */
+.mkp-strip-wrap{margin-bottom:8px;}
+.mkp-strip{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;min-height:56px;}
+.mkp-thumb{position:relative;width:56px;height:56px;border-radius:4px;overflow:hidden;border:1.5px solid var(--border);cursor:pointer;flex-shrink:0;transition:border-color 0.15s;background:var(--bg);}
+.mkp-thumb:hover{border-color:rgba(127,119,221,0.5);}
+.mkp-thumb.active{border-color:var(--purple);box-shadow:0 0 0 2px rgba(127,119,221,0.25);}
+.mkp-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.mkp-thumb-del{position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:rgba(216,90,48,0.85);color:white;font-size:10px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.15s;cursor:pointer;line-height:1;border:none;}
+.mkp-thumb:hover .mkp-thumb-del{opacity:1;}
+.mkp-thumb-add{width:56px;height:56px;border-radius:4px;border:1px dashed rgba(127,119,221,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.15s;background:transparent;font-family:'DM Sans',sans-serif;}
+.mkp-thumb-add:hover{background:var(--purple-dim);border-color:var(--purple);}
+.mkp-thumb-add-icon{font-size:18px;color:var(--purple);line-height:1;}
+.mkp-thumb-add-label{font-size:9px;color:var(--purple);letter-spacing:0.08em;margin-top:3px;}
+.mkp-strip-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;}
+.mkp-strip-count{font-size:10px;color:var(--gray2);}
+
+.mkp-hint{font-size:11px;color:var(--gray2);margin-top:6px;text-align:center;line-height:1.5;}
 
 
 .modal-foot{
@@ -352,6 +371,57 @@ body{background:var(--bg);color:var(--off);font-family:'DM Sans',sans-serif;font
 }
 .btn-danger:hover{opacity:0.85;}
 </style>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+    import { getStorage, ref, uploadString, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+
+    // ── YOUR FIREBASE CONFIG (replace with yours from Firebase Console) ──
+    const firebaseConfig = {
+  apiKey: "AIzaSyD9RRXvweU42AmWKjzMQtC7RANKYaGqNac",
+  authDomain: "brokewear-aura-7fb21.firebaseapp.com",
+  projectId: "brokewear-aura-7fb21",
+  storageBucket: "brokewear-aura-7fb21.firebasestorage.app",
+  messagingSenderId: "555533083693",
+  appId: "1:555533083693:web:343842ea97c1817fea84a4"
+};
+
+    const app  = initializeApp(firebaseConfig);
+    const db   = getFirestore(app);
+    const stor = getStorage(app);
+
+    // Expose to global scope so non-module JS can call them
+    window.fbDb   = db;
+    window.fbStor = stor;
+    window.fbCol  = collection;
+    window.fbDoc  = doc;
+    window.fbAdd  = addDoc;
+    window.fbUpd  = updateDoc;
+    window.fbDel  = deleteDoc;
+    window.fbGet  = getDocs;
+    window.fbSnap = onSnapshot;
+    window.fbRef  = ref;
+    window.fbUploadStr = uploadString;
+    window.fbGetURL    = getDownloadURL;
+    window.fbDelObj    = deleteObject;
+    window.fbTimestamp = serverTimestamp;
+    window.fbReady = true;
+    console.log('Firebase ready');
+    document.getElementById('fbStatusDot').style.background = '#4CAF7D';
+    document.getElementById('fbStatusDot').style.boxShadow = '0 0 6px #4CAF7D';
+    document.getElementById('fbStatusText').textContent = 'Firebase Connected';
+
+    // ── Real-time listener: update product table whenever Firestore changes ──
+    window.fbSnap(window.fbCol(window.fbDb, 'products'), snapshot => {
+      products = [];
+      snapshot.forEach(d => products.push({ id: d.id, ...d.data() }));
+      products.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+      updateStats();
+      renderTable();
+    });
+  </script>
 </head>
 <body>
 
@@ -397,9 +467,10 @@ body{background:var(--bg);color:var(--off);font-family:'DM Sans',sans-serif;font
   </div>
   <div class="sidebar-bottom">
     <div class="admin-badge">
-      <div class="admin-dot"></div>
-      <div class="admin-name">Admin · BrokeWear</div>
+      <div class="admin-dot" id="fbStatusDot" style="background:#888;box-shadow:none;"></div>
+      <div class="admin-name" id="fbStatusText">Connecting...</div>
     </div>
+    <div style="margin-top:8px;font-size:10px;color:var(--gray2);letter-spacing:0.05em;">Firebase · Firestore DB</div>
   </div>
 </aside>
 
@@ -540,62 +611,89 @@ body{background:var(--bg);color:var(--off);font-family:'DM Sans',sans-serif;font
       <!-- T-Shirt Mockup Builder -->
       <div class="mockup-section">
         <label class="form-label">T-Shirt Mockup</label>
-        <div class="mockup-tabs">
-          <button class="mockup-tab active" onclick="setMockupView('front',this)">Front</button>
-          <button class="mockup-tab" onclick="setMockupView('back',this)">Back</button>
-          <button class="mockup-tab" onclick="setMockupView('folded',this)">Folded</button>
+
+        <!-- Canvas area -->
+        <!-- Multi-mockup thumbnail strip -->
+        <div class="mkp-strip-wrap" id="mkpStripWrap">
+          <div class="mkp-strip-label">
+            <span>Mockup Views</span>
+            <span class="mkp-strip-count" id="mkpStripCount">0 uploaded</span>
+          </div>
+          <div class="mkp-strip" id="mkpStrip">
+            <button class="mkp-thumb-add" onclick="document.getElementById('mkpBgInput').click()" title="Add mockup photo">
+              <div class="mkp-thumb-add-icon">+</div>
+              <div class="mkp-thumb-add-label">ADD</div>
+            </button>
+          </div>
         </div>
-        <div class="mockup-wrap">
-          <div class="mockup-canvas-wrap">
-            <canvas id="mockupCanvas" width="260" height="220" style="display:block;max-width:100%;"></canvas>
+
+        <!-- Canvas area -->
+        <div class="mkp-canvas-outer" id="mkpOuter">
+          <div class="mkp-drop-zone" id="mkpDropZone" onclick="document.getElementById('mkpBgInput').click()">
+            <div class="mkp-drop-icon">👕</div>
+            <div class="mkp-drop-text">Upload one or more<br>t-shirt mockup photos</div>
+            <button class="mkp-drop-btn" onclick="event.stopPropagation();document.getElementById('mkpBgInput').click()">↑ Upload Mockups</button>
           </div>
-          <div class="mockup-controls">
-            <div>
-              <div class="ctrl-label">Shirt Color</div>
-              <div class="color-swatches" id="shirtColors"></div>
+          <canvas id="mockupCanvas" width="500" height="500" style="display:none;width:100%;height:auto;cursor:move;"></canvas>
+        </div>
+        <input type="file" id="mkpBgInput" accept="image/*" multiple style="display:none;" onchange="mkpLoadBg(event)"/>
+        <input type="file" id="mkpLayerInput" accept="image/*" style="display:none;" onchange="mkpLoadLayer(event)"/>
+
+        <!-- Toolbar (shown after bg loaded) -->
+        <div class="mkp-toolbar" id="mkpToolbar" style="display:none;">
+          <button class="mkp-tool-btn active" id="toolMove" onclick="mkpSetTool('move',this)">✥ Move</button>
+          <button class="mkp-tool-btn" id="toolText" onclick="mkpSetTool('text',this)">T Text</button>
+          <button class="mkp-tool-btn" id="toolArt" onclick="mkpSetTool('art',this)">⬡ Art</button>
+          <button class="mkp-tool-btn" id="toolImg" onclick="document.getElementById('mkpLayerInput').click()">↑ Add Image</button>
+          <button class="mkp-tool-btn" onclick="mkpUndo()">↩ Undo</button>
+          <button class="mkp-tool-btn red" onclick="mkpClearLayers()">✕ Clear</button>
+          <button class="mkp-tool-btn" onclick="document.getElementById('mkpBgInput').click()">+ Add More</button>
+        </div>
+
+        <!-- Controls (shown after bg loaded) -->
+        <div id="mkpControls" style="display:none;">
+          <div class="mkp-panels">
+            <div class="mkp-panel">
+              <span class="ctrl-label">Text / Art Color</span>
+              <div class="color-swatches" id="mkpColorSwatches"></div>
             </div>
-            <div>
-              <div class="ctrl-label">Print Color</div>
-              <div class="print-colors" id="printColors"></div>
+            <div class="mkp-panel">
+              <span class="ctrl-label">Opacity</span>
+              <input type="range" class="mkp-slider" id="mkpOpacity" min="10" max="100" value="100" oninput="mkpRedraw()"/>
+              <span class="ctrl-label" style="margin-top:8px;">Size / Scale</span>
+              <input type="range" class="mkp-slider" id="mkpSize" min="10" max="200" value="60" oninput="mkpRedraw()"/>
             </div>
-            <div>
-              <div class="ctrl-label">Print Text</div>
-              <input class="print-text-input" id="printText" placeholder="AURA" maxlength="12" oninput="drawMockup()"/>
-            </div>
-            <div>
-              <div class="ctrl-label">Print Style</div>
-              <select class="form-select" id="printStyle" onchange="drawMockup()" style="font-size:12px;padding:5px 8px;">
-                <option value="text">Text Only</option>
-                <option value="broken">Broken Line</option>
-                <option value="circle">Aura Circle</option>
-                <option value="wave">Wave Art</option>
-              </select>
-            </div>
-            <!-- Import Mode Toggle -->
-            <div>
-              <div class="ctrl-label">Mockup Mode</div>
-              <div class="import-mode-bar">
-                <button class="import-mode-btn active" id="modeDesignBtn" onclick="setMockupMode('design',this)">Design</button>
-                <button class="import-mode-btn" id="modeImportBtn" onclick="setMockupMode('import',this)">Import</button>
-              </div>
-            </div>
-            <!-- Import section (shown in import mode) -->
-            <div id="importSection" style="display:none;">
-              <input type="file" id="mockupFileInput" accept="image/*" style="display:none;" onchange="handleMockupImport(event)"/>
-              <button class="mockup-import-btn" onclick="document.getElementById('mockupFileInput').click()">↑ Upload Image</button>
-              <img id="importPreview" class="import-img-preview" alt="imported"/>
-              <div class="ctrl-label" style="margin-top:8px;">Position</div>
-              <div class="mockup-pos-controls">
-                <button class="pos-btn" onclick="movePrint(-10,0)">← Left</button>
-                <button class="pos-btn" onclick="movePrint(10,0)">Right →</button>
-                <button class="pos-btn" onclick="movePrint(0,-10)">↑ Up</button>
-                <button class="pos-btn" onclick="movePrint(0,10)">↓ Down</button>
-              </div>
-              <div class="ctrl-label" style="margin-top:8px;">Size</div>
-              <input type="range" class="size-slider" id="importSizeSlider" min="20" max="120" value="60" oninput="drawMockup()"/>
-            </div>
-            <button class="mockup-download" onclick="downloadMockup()">↓ Save Mockup PNG</button>
           </div>
+
+          <!-- Text tool panel -->
+          <div class="mkp-panel-full" id="mkpTextPanel">
+            <span class="ctrl-label">Text Content</span>
+            <div class="mkp-text-row">
+              <input class="mkp-text-input" id="mkpTextVal" placeholder="BROKEWEAR AURA" oninput="mkpRedraw()"/>
+              <button class="mkp-tool-btn" onclick="mkpAddText()" style="white-space:nowrap;">+ Add</button>
+            </div>
+            <select class="mkp-select" id="mkpFontStyle" onchange="mkpRedraw()">
+              <option value="bold uppercase">Bold Caps</option>
+              <option value="normal uppercase">Regular Caps</option>
+              <option value="italic">Italic</option>
+              <option value="bold italic">Bold Italic</option>
+            </select>
+          </div>
+
+          <!-- Art tool panel -->
+          <div class="mkp-panel-full" id="mkpArtPanel" style="display:none;">
+            <span class="ctrl-label">Art Style</span>
+            <select class="mkp-select" id="mkpArtStyle" onchange="mkpRedraw()">
+              <option value="broken">Broken Line (Logo)</option>
+              <option value="circle">Aura Circles</option>
+              <option value="wave">Wave Lines</option>
+              <option value="cross">Crosshair</option>
+              <option value="diamond">Diamond</option>
+            </select>
+          </div>
+
+          <button class="mockup-download" onclick="downloadMockup()">↓ Download Mockup PNG</button>
+          <div class="mkp-hint">Drag items on canvas to reposition • Scroll to resize selected layer</div>
         </div>
       </div>
     </div>
@@ -643,7 +741,7 @@ if(products.length === 0) {
   save();
 }
 
-function save(){localStorage.setItem('bwa_products',JSON.stringify(products));updateStats();}
+function save(){ updateStats(); } // Firebase saves happen per-operation below
 
 function updateStats(){
   document.getElementById('statTotal').textContent = products.length;
@@ -723,24 +821,9 @@ function openAddModal(){
   document.getElementById('fSizes').value='S, M, L, XL, XXL';
   document.getElementById('fStatus').value='active';
   buildEmojiGrid('👕');
-  shirtColor='#F5F3EE'; printColor='#1A1A1A'; mockupView='front'; mockupData=null; mockupMode='design'; importedImage=null; importOffsetX=0; importOffsetY=0;
+  mockupData=null;
   document.getElementById('modalOverlay').classList.add('open');
-  setTimeout(()=>{
-    buildColorPickers(); resetMockupTabs();
-    document.getElementById('printText').value='';
-    document.getElementById('printStyle').value='text';
-    // reset import UI
-    const iSec = document.getElementById('importSection');
-    if(iSec) iSec.style.display='none';
-    const prev = document.getElementById('importPreview');
-    if(prev){ prev.src=''; prev.style.display='none'; }
-    document.querySelectorAll('.import-mode-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-    if(document.getElementById('shirtColors')) document.getElementById('shirtColors').parentElement.style.display='';
-    if(document.getElementById('printColors')) document.getElementById('printColors').parentElement.style.display='';
-    document.querySelectorAll('.print-text-input').forEach(el=>el.closest('div').style.display='');
-    const ps = document.getElementById('printStyle'); if(ps) ps.closest('div').style.display='';
-    drawMockup();
-  }, 60);
+  setTimeout(()=>{ mkpReset(); }, 60);
 }
 
 function openEditModal(id){
@@ -757,64 +840,67 @@ function openEditModal(id){
   document.getElementById('fSizes').value=p.sizes||'';
   document.getElementById('fStatus').value=p.status;
   buildEmojiGrid(p.icon||'👕');
-  shirtColor = p.mockupShirt || '#F5F3EE';
-  printColor = p.mockupPrint || '#1A1A1A';
   mockupData = p.mockupImg || null;
-  mockupView = 'front';
-  mockupMode = 'design'; importedImage = null; importOffsetX = 0; importOffsetY = 0;
   document.getElementById('modalOverlay').classList.add('open');
-  setTimeout(()=>{
-    buildColorPickers();
-    resetMockupTabs();
-    document.querySelectorAll('.color-swatch').forEach(el=>{ el.classList.toggle('selected', el.title===shirtColor); });
-    document.querySelectorAll('.print-color').forEach(el=>{ el.classList.toggle('selected', el.title===printColor); });
-    document.getElementById('printText').value = p.mockupText || '';
-    document.getElementById('printStyle').value = p.mockupStyle || 'text';
-    drawMockup();
-  }, 60);
+  setTimeout(()=>{ mkpReset(p); }, 60);
 }
 
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 
-function saveProduct(){
+async function saveProduct(){
   const name = document.getElementById('fName').value.trim();
   const price = parseInt(document.getElementById('fPrice').value);
   if(!name){ showToast('Product name is required!', true); return; }
   if(!price || price < 1){ showToast('Please enter a valid price!', true); return; }
+  if(!window.fbReady){ showToast('Firebase not connected yet. Check config.', true); return; }
 
-  drawMockup(); // ensure canvas is rendered
-  const canvas = document.getElementById('mockupCanvas');
+  showToast('Saving product...'); 
 
-  const data = {
-    name,
-    icon: selectedEmoji,
-    price,
-    compare: parseInt(document.getElementById('fCompare').value) || 0,
-    category: document.getElementById('fCategory').value,
-    stock: document.getElementById('fStock').value === '' ? 999 : parseInt(document.getElementById('fStock').value),
-    desc: document.getElementById('fDesc').value.trim(),
-    sizes: document.getElementById('fSizes').value.trim(),
-    status: document.getElementById('fStatus').value,
-    mockupShirt: shirtColor,
-    mockupPrint: printColor,
-    mockupText: document.getElementById('printText').value,
-    mockupStyle: document.getElementById('printStyle').value,
-    mockupImg: canvas ? canvas.toDataURL('image/png') : null,
-  };
+  try {
+    // ── Upload mockup images to Firebase Storage (avoids quota) ──
+    const mockupUrls = [];
+    for(let i=0; i<mkpSlots.length; i++){
+      const slot = mkpSlots[i];
+      const dataUrl = slot.data || (mkpBgImage ? document.getElementById('mockupCanvas').toDataURL('image/jpeg', 0.7) : null);
+      if(!dataUrl) continue;
+      // Upload as base64 to Firebase Storage
+      const imgRef = window.fbRef(window.fbStor, `mockups/${Date.now()}_${i}.jpg`);
+      await window.fbUploadStr(imgRef, dataUrl, 'data_url');
+      const url = await window.fbGetURL(imgRef);
+      mockupUrls.push(url);
+    }
 
-  const editId = document.getElementById('editId').value;
-  if(editId){
-    const idx = products.findIndex(p => p.id == editId);
-    if(idx > -1){ products[idx] = { ...products[idx], ...data }; }
-    showToast('Product updated!');
-  } else {
-    data.id = Date.now();
-    products.unshift(data);
-    showToast('Product added to store!');
+    const data = {
+      name,
+      icon: selectedEmoji,
+      price,
+      compare: parseInt(document.getElementById('fCompare').value) || 0,
+      category: document.getElementById('fCategory').value,
+      stock: document.getElementById('fStock').value === '' ? 999 : parseInt(document.getElementById('fStock').value),
+      desc: document.getElementById('fDesc').value.trim(),
+      sizes: document.getElementById('fSizes').value.trim(),
+      status: document.getElementById('fStatus').value,
+      mockupImg: mockupUrls[0] || null,
+      mockupImgs: mockupUrls,
+      updatedAt: window.fbTimestamp(),
+    };
+
+    const editId = document.getElementById('editId').value;
+    if(editId){
+      // Update existing doc in Firestore
+      await window.fbUpd(window.fbDoc(window.fbDb, 'products', editId), data);
+      showToast('Product updated! ✓');
+    } else {
+      // Add new doc
+      data.createdAt = window.fbTimestamp();
+      await window.fbAdd(window.fbCol(window.fbDb, 'products'), data);
+      showToast('Product added to store! ✓');
+    }
+    closeModal();
+  } catch(err){
+    console.error(err);
+    showToast('Error: ' + err.message, true);
   }
-  save();
-  renderTable();
-  closeModal();
 }
 
 /* saveProduct defined below with mockup support */
@@ -824,18 +910,23 @@ function askDelete(id){
   document.getElementById('confirmOverlay').classList.add('open');
 }
 function closeConfirm(){document.getElementById('confirmOverlay').classList.remove('open');deleteId=null;}
-function confirmDelete(){
+async function confirmDelete(){
   if(!deleteId) return;
-  products = products.filter(p=>p.id!==deleteId);
-  save();renderTable();closeConfirm();
-  showToast('Product deleted.',true);
+  try {
+    await window.fbDel(window.fbDoc(window.fbDb, 'products', deleteId));
+    closeConfirm();
+    showToast('Product deleted.');
+  } catch(err){
+    showToast('Delete failed: ' + err.message, true);
+  }
+  deleteId = null;
 }
 
 function exportProducts(){
   const headers = ['ID','Name','Category','Price','Compare Price','Stock','Sizes','Status','Description'];
   const rows = products.map(p=>[
-    'SKU-'+String(p.id).padStart(4,'0'),p.name,p.category,p.price,p.compare||'',
-    p.stock>=999?'Unlimited':p.stock,p.sizes||'',p.status,p.desc||''
+    p.id, p.name, p.category, p.price, p.compare||'',
+    p.stock>=999?'Unlimited':p.stock, p.sizes||'', p.status, p.desc||''
   ].map(v=>`"${v}"`).join(','));
   const csv = [headers.join(','),...rows].join('\n');
   const a = document.createElement('a');
@@ -868,368 +959,484 @@ document.getElementById('confirmOverlay').addEventListener('click',e=>{
 updateStats();
 renderTable();
 
-// ── T-Shirt Mockup System ──
-const SHIRT_COLORS = ['#F5F3EE','#1A1A1A','#7F77DD','#D85A30','#4CAF7D','#3A3A5C','#8B2020','#2D5A27'];
-const PRINT_COLORS_LIST = ['#1A1A1A','#F5F3EE','#7F77DD','#D85A30','#4CAF7D','#FFD700'];
-let shirtColor = '#F5F3EE';
-let printColor = '#1A1A1A';
-let mockupView = 'front';
-let mockupData = null; // base64 saved per product
 
-function buildColorPickers(){
-  document.getElementById('shirtColors').innerHTML = SHIRT_COLORS.map((c,i)=>
-    `<div class="color-swatch${i===0?' selected':''}" style="background:${c}" onclick="setShirtColor('${c}',this)" title="${c}"></div>`
+
+// ══════════════════════════════════════════════
+//  BrokeWear Aura — Real Mockup Studio
+//  Upload a t-shirt photo → layer text/art on top
+// ══════════════════════════════════════════════
+const MKP_COLORS = ['#1A1A1A','#F5F3EE','#7F77DD','#D85A30','#4CAF7D','#FFD700','#E8C4F0','#FF6B6B'];
+let mkpBgImage   = null;   // background t-shirt photo
+let mkpLayers    = [];     // array of layer objects
+let mkpHistory   = [];     // undo stack
+let mkpSelected  = null;   // index of selected layer
+let mkpTool      = 'move'; // current tool
+let mkpColor     = '#F5F3EE';
+let mkpDragging  = false;
+let mkpDragOffX  = 0, mkpDragOffY = 0;
+let mkpCanvasW   = 500, mkpCanvasH = 500;
+
+// ── Init color swatches ──
+function mkpBuildSwatches(){
+  const el = document.getElementById('mkpColorSwatches');
+  if(!el) return;
+  el.innerHTML = MKP_COLORS.map((c,i)=>
+    `<div class="color-swatch${i===0?' selected':''}" style="background:${c}" title="${c}" onclick="mkpSetColor('${c}',this)"></div>`
   ).join('');
-  document.getElementById('printColors').innerHTML = PRINT_COLORS_LIST.map((c,i)=>
-    `<div class="print-color${i===0?' selected':''}" style="background:${c}" onclick="setPrintColor('${c}',this)" title="${c}"></div>`
-  ).join('');
 }
 
-function setShirtColor(c,el){
-  shirtColor=c;
-  document.querySelectorAll('.color-swatch').forEach(x=>x.classList.remove('selected'));
+function mkpSetColor(c, el){
+  mkpColor = c;
+  document.querySelectorAll('#mkpColorSwatches .color-swatch').forEach(s=>s.classList.remove('selected'));
   el.classList.add('selected');
-  drawMockup();
-}
-function setPrintColor(c,el){
-  printColor=c;
-  document.querySelectorAll('.print-color').forEach(x=>x.classList.remove('selected'));
-  el.classList.add('selected');
-  drawMockup();
-}
-function setMockupView(v,el){
-  mockupView=v;
-  document.querySelectorAll('.mockup-tab').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-  drawMockup();
+  if(mkpSelected !== null) { mkpLayers[mkpSelected].color = c; mkpRedraw(); }
 }
 
-function drawMockup(){
+// ── Load background t-shirt image ──
+// Multi-mockup state
+let mkpSlots = [];       // [{img, layers, history, data}]  one slot per uploaded photo
+let mkpActiveSlot = 0;   // index of currently shown slot
+
+function mkpLoadBg(e){
+  const files = Array.from(e.target.files);
+  if(!files.length) return;
+  let loaded = 0;
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        mkpSlots.push({ img, layers:[], history:[], data:null });
+        loaded++;
+        if(loaded === files.length){
+          mkpActiveSlot = mkpSlots.length - 1;
+          mkpSyncFromSlot();
+          mkpRebuildStrip();
+          mkpShowCanvas();
+          mkpRedraw();
+        }
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  e.target.value = '';
+}
+
+function mkpShowCanvas(){
+  document.getElementById('mkpDropZone').style.display = 'none';
+  document.getElementById('mkpToolbar').style.display = 'flex';
+  document.getElementById('mkpControls').style.display = 'block';
   const canvas = document.getElementById('mockupCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W=260, H=220;
-  ctx.clearRect(0,0,W,H);
+  canvas.style.display = 'block';
+}
 
-  if(mockupView==='front') drawFront(ctx,W,H);
-  else if(mockupView==='back') drawBack(ctx,W,H);
-  else drawFolded(ctx,W,H);
+// Sync global mkpBgImage / mkpLayers / mkpHistory from active slot
+function mkpSyncFromSlot(){
+  if(!mkpSlots.length) return;
+  const slot = mkpSlots[mkpActiveSlot];
+  mkpBgImage = slot.img;
+  mkpLayers  = slot.layers;
+  mkpHistory = slot.history;
+  mkpCanvasW = slot.img.width > 600 ? 600 : slot.img.width;
+  mkpCanvasH = Math.round(slot.img.height * mkpCanvasW / slot.img.width);
+  const canvas = document.getElementById('mockupCanvas');
+  canvas.width  = mkpCanvasW;
+  canvas.height = mkpCanvasH;
+  mkpSelected = null;
+}
 
-  // If import mode and image loaded, draw imported image on shirt
-  if(typeof mockupMode !== 'undefined' && mockupMode === 'import' && typeof importedImage !== 'undefined' && importedImage){
-    const slider = document.getElementById('importSizeSlider');
-    const size = slider ? parseInt(slider.value) : 60;
-    const cx = W/2 + (importOffsetX||0);
-    const cy = H/2 + 10 + (importOffsetY||0);
-    const aspect = importedImage.width / importedImage.height;
-    const iw = size * (aspect >= 1 ? 1 : aspect);
-    const ih = size * (aspect >= 1 ? 1/aspect : 1);
-    ctx.save();
-    ctx.shadowColor = 'rgba(0,0,0,0.3)';
-    ctx.shadowBlur = 8;
-    ctx.drawImage(importedImage, cx - iw/2, cy - ih/2, iw, ih);
-    ctx.restore();
+// Sync current canvas state back into active slot
+function mkpSyncToSlot(){
+  if(!mkpSlots.length) return;
+  mkpSlots[mkpActiveSlot].layers  = mkpLayers;
+  mkpSlots[mkpActiveSlot].history = mkpHistory;
+  mkpSlots[mkpActiveSlot].data    = document.getElementById('mockupCanvas').toDataURL('image/png');
+}
+
+// Switch active slot
+function mkpSwitchSlot(idx){
+  mkpSyncToSlot();           // save current slot state
+  mkpActiveSlot = idx;
+  mkpSyncFromSlot();
+  mkpRebuildStrip();
+  mkpBuildSwatches();
+  mkpRedraw();
+}
+
+// Delete a slot
+function mkpDeleteSlot(idx, e){
+  e.stopPropagation();
+  mkpSlots.splice(idx, 1);
+  if(!mkpSlots.length){
+    mkpBgImage=null; mkpLayers=[]; mkpHistory=[]; mkpSelected=null;
+    document.getElementById('mockupCanvas').style.display='none';
+    document.getElementById('mkpDropZone').style.display='flex';
+    document.getElementById('mkpToolbar').style.display='none';
+    document.getElementById('mkpControls').style.display='none';
+    mkpRebuildStrip();
+    return;
   }
-
-  // Save mockup data
-  mockupData = canvas.toDataURL('image/png');
+  mkpActiveSlot = Math.min(mkpActiveSlot, mkpSlots.length-1);
+  mkpSyncFromSlot();
+  mkpRebuildStrip();
+  mkpRedraw();
 }
 
-function drawFront(ctx,W,H){
-  const sc = shirtColor;
-  const isLight = isLightColor(sc);
-  const shadow = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.05)';
-  const outline = isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)';
-
-  ctx.save();
-  // T-shirt body
-  ctx.beginPath();
-  // collar
-  ctx.moveTo(100,28); ctx.lineTo(115,20); ctx.quadraticCurveTo(130,16,145,20); ctx.lineTo(160,28);
-  // right shoulder
-  ctx.lineTo(200,38); ctx.lineTo(225,32);
-  // right sleeve
-  ctx.lineTo(240,55); ctx.lineTo(215,65); ctx.lineTo(200,55);
-  // right body
-  ctx.lineTo(200,185); ctx.lineTo(60,185);
-  // left body
-  ctx.lineTo(60,55); ctx.lineTo(45,65); ctx.lineTo(20,55);
-  // left sleeve
-  ctx.lineTo(35,32); ctx.lineTo(60,38);
-  ctx.closePath();
-  ctx.fillStyle = sc;
-  ctx.fill();
-  ctx.strokeStyle = outline;
-  ctx.lineWidth = 1.2;
-  ctx.stroke();
-
-  // Collar detail
-  ctx.beginPath();
-  ctx.moveTo(108,28); ctx.quadraticCurveTo(130,42,152,28);
-  ctx.strokeStyle = shadow;
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-
-  // Sleeve fold shadow
-  ctx.beginPath();
-  ctx.moveTo(215,65); ctx.lineTo(200,55);
-  ctx.moveTo(45,65); ctx.lineTo(60,55);
-  ctx.strokeStyle = shadow;
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // Print area
-  drawPrint(ctx, 130, 110, isLight);
-  ctx.restore();
+// Rebuild thumbnail strip
+function mkpRebuildStrip(){
+  const strip = document.getElementById('mkpStrip');
+  const count = document.getElementById('mkpStripCount');
+  if(!strip) return;
+  // Build thumb HTML
+  let html = mkpSlots.map((slot, i) => {
+    const src = slot.data || slot.img.src;
+    return `<div class="mkp-thumb${i===mkpActiveSlot?' active':''}" onclick="mkpSwitchSlot(${i})" title="View ${i+1}">
+      <img src="${src}" alt="mockup ${i+1}"/>
+      <button class="mkp-thumb-del" onclick="mkpDeleteSlot(${i},event)" title="Remove">✕</button>
+    </div>`;
+  }).join('');
+  // Add button always at end
+  html += `<button class="mkp-thumb-add" onclick="document.getElementById('mkpBgInput').click()" title="Add more mockups">
+    <div class="mkp-thumb-add-icon">+</div>
+    <div class="mkp-thumb-add-label">ADD</div>
+  </button>`;
+  strip.innerHTML = html;
+  count.textContent = mkpSlots.length + (mkpSlots.length===1?' mockup':' mockups');
 }
 
-function drawBack(ctx,W,H){
-  const sc = shirtColor;
-  const isLight = isLightColor(sc);
-  const outline = isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)';
-  const shadow = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)';
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(100,28); ctx.lineTo(115,20); ctx.quadraticCurveTo(130,16,145,20); ctx.lineTo(160,28);
-  ctx.lineTo(200,38); ctx.lineTo(225,32);
-  ctx.lineTo(240,55); ctx.lineTo(215,65); ctx.lineTo(200,55);
-  ctx.lineTo(200,185); ctx.lineTo(60,185);
-  ctx.lineTo(60,55); ctx.lineTo(45,65); ctx.lineTo(20,55);
-  ctx.lineTo(35,32); ctx.lineTo(60,38);
-  ctx.closePath();
-  ctx.fillStyle = sc;
-  ctx.fill();
-  ctx.strokeStyle = outline;
-  ctx.lineWidth = 1.2;
-  ctx.stroke();
-
-  // Center seam
-  ctx.beginPath();
-  ctx.moveTo(130,28); ctx.lineTo(130,185);
-  ctx.strokeStyle = shadow;
-  ctx.lineWidth = 1;
-  ctx.setLineDash([4,6]);
-  ctx.stroke();
-  ctx.setLineDash([]);
-
-  // Back print
-  drawPrint(ctx, 130, 115, isLight);
-  ctx.restore();
-}
-
-function drawFolded(ctx,W,H){
-  const sc = shirtColor;
-  const isLight = isLightColor(sc);
-  const outline = isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)';
-  const fold = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(0,0,0,0.3)';
-
-  ctx.save();
-  // Main folded rectangle
-  ctx.beginPath();
-  ctx.roundRect(55,30,150,160,4);
-  ctx.fillStyle = sc;
-  ctx.fill();
-  ctx.strokeStyle = outline;
-  ctx.lineWidth = 1.2;
-  ctx.stroke();
-
-  // Fold shadow left flap
-  ctx.beginPath();
-  ctx.moveTo(55,30); ctx.lineTo(75,50); ctx.lineTo(75,190); ctx.lineTo(55,190);
-  ctx.closePath();
-  ctx.fillStyle = fold;
-  ctx.fill();
-
-  // Fold shadow right flap
-  ctx.beginPath();
-  ctx.moveTo(205,30); ctx.lineTo(185,50); ctx.lineTo(185,190); ctx.lineTo(205,190);
-  ctx.closePath();
-  ctx.fillStyle = fold;
-  ctx.fill();
-
-  // Collar cutout
-  ctx.beginPath();
-  ctx.arc(130,30,18,0,Math.PI);
-  ctx.fillStyle = sc;
-  ctx.fill();
-  ctx.strokeStyle = outline;
-  ctx.lineWidth=1;
-  ctx.stroke();
-
-  // Mini sleeve hints
-  ctx.beginPath();
-  ctx.moveTo(55,30); ctx.lineTo(35,55); ctx.lineTo(55,60);
-  ctx.moveTo(205,30); ctx.lineTo(225,55); ctx.lineTo(205,60);
-  ctx.strokeStyle = outline;
-  ctx.lineWidth=1;
-  ctx.fill();
-  ctx.fillStyle = sc;
-  ctx.fill();
-  ctx.stroke();
-
-  // Print
-  drawPrint(ctx, 130, 115, isLight);
-  ctx.restore();
-}
-
-function drawPrint(ctx, cx, cy, isLight){
-  const style = document.getElementById('printStyle') ? document.getElementById('printStyle').value : 'text';
-  const text = (document.getElementById('printText') ? document.getElementById('printText').value : '') || 'AURA';
-  const pc = printColor;
-
-  ctx.save();
-  ctx.fillStyle = pc;
-  ctx.strokeStyle = pc;
-
-  if(style==='text'){
-    ctx.font = "bold 18px 'DM Sans', sans-serif";
-    ctx.textAlign='center';
-    ctx.textBaseline='middle';
-    ctx.fillText(text.toUpperCase(), cx, cy);
-    ctx.font = "10px 'DM Sans', sans-serif";
-    ctx.globalAlpha=0.5;
-    ctx.fillText('BROKEWEAR AURA', cx, cy+18);
-    ctx.globalAlpha=1;
-  }
-  else if(style==='broken'){
-    ctx.lineWidth=2; ctx.lineCap='round';
-    // Horizontal broken line
-    ctx.beginPath(); ctx.moveTo(cx-35,cy); ctx.lineTo(cx-10,cy); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx+10,cy); ctx.lineTo(cx+35,cy); ctx.stroke();
-    // Vertical line
-    ctx.beginPath(); ctx.moveTo(cx,cy-28); ctx.lineTo(cx,cy-8); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx,cy+8); ctx.lineTo(cx,cy+28); ctx.stroke();
-    // Circles
-    ctx.beginPath(); ctx.arc(cx,cy,12,0,Math.PI*2); ctx.lineWidth=1.5; ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx,cy,20,0,Math.PI*2); ctx.globalAlpha=0.4; ctx.stroke();
-    ctx.globalAlpha=1;
-    // Gap dot
-    ctx.beginPath(); ctx.arc(cx-10,cy,2.5,0,Math.PI*2); ctx.fill();
-    // Text below
-    ctx.font = "9px 'DM Sans', sans-serif";
-    ctx.textAlign='center'; ctx.globalAlpha=0.6;
-    ctx.fillText(text.toUpperCase(), cx, cy+40);
-    ctx.globalAlpha=1;
-  }
-  else if(style==='circle'){
-    ctx.lineWidth=1.5;
-    for(let r=8;r<=30;r+=8){
-      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
-      ctx.globalAlpha = 1 - (r/40);
-      ctx.stroke();
-    }
-    ctx.globalAlpha=1;
-    ctx.font = "bold 11px 'DM Sans', sans-serif";
-    ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText(text.toUpperCase(), cx, cy);
-  }
-  else if(style==='wave'){
-    ctx.lineWidth=1.8; ctx.lineCap='round';
-    for(let row=-2;row<=2;row++){
-      ctx.beginPath();
-      ctx.globalAlpha = 1 - Math.abs(row)*0.2;
-      for(let x=-30;x<=30;x++){
-        const y = Math.sin((x+row*5)*0.25)*5 + row*10;
-        if(x===-30) ctx.moveTo(cx+x, cy+y);
-        else ctx.lineTo(cx+x, cy+y);
-      }
-      ctx.stroke();
-    }
-    ctx.globalAlpha=1;
-    ctx.font = "8px 'DM Sans', sans-serif";
-    ctx.textAlign='center';
-    ctx.fillText(text.toUpperCase(), cx, cy+36);
-  }
-  ctx.restore();
-}
-
-function isLightColor(hex){
-  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
-  return (r*299+g*587+b*114)/1000 > 128;
-}
-
-function downloadMockup(){
-  if(!mockupData){drawMockup();}
-  const a = document.createElement('a');
-  const name = document.getElementById('fName').value.trim() || 'product';
-  a.download = name.toLowerCase().replace(/\s+/g,'_')+'_mockup.png';
-  a.href = mockupData || document.getElementById('mockupCanvas').toDataURL();
-  a.click();
-  showToast('Mockup downloaded!');
-}
-
-// Init mockup on modal open — patch openAddModal and openEditModal
-
-
-function resetMockupTabs(){
-  document.querySelectorAll('.mockup-tab').forEach((t,i)=>{t.classList.toggle('active',i===0);});
-  mockupView='front';
-}
-
-
-
-// ── Import Mockup Mode ──
-let mockupMode = 'design'; // 'design' or 'import'
-let importedImage = null;
-let importOffsetX = 0;
-let importOffsetY = 0;
-
-function setMockupMode(mode, el){
-  mockupMode = mode;
-  document.querySelectorAll('.import-mode-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  const importSec = document.getElementById('importSection');
-  // In design mode show controls, in import mode show upload
-  if(mode === 'import'){
-    importSec.style.display = 'flex';
-    importSec.style.flexDirection = 'column';
-    importSec.style.gap = '4px';
-    // Hide design controls
-    document.getElementById('shirtColors').parentElement.style.display = 'none';
-    document.getElementById('printColors').parentElement.style.display = 'none';
-    document.querySelectorAll('.print-text-input, #printStyle').forEach(el => el.closest('div').style.display='none');
-  } else {
-    importSec.style.display = 'none';
-    document.getElementById('shirtColors').parentElement.style.display = '';
-    document.getElementById('printColors').parentElement.style.display = '';
-    document.querySelectorAll('.print-text-input, #printStyle').forEach(el => el.closest('div').style.display='');
-    importedImage = null;
-    document.getElementById('importPreview').style.display = 'none';
-  }
-  drawMockup();
-}
-
-function handleMockupImport(e){
-  const file = e.target.files[0];
-  if(!file) return;
+// ── Load image layer ──
+function mkpLoadLayer(e){
+  const file = e.target.files[0]; if(!file) return;
   const reader = new FileReader();
-  reader.onload = function(ev){
+  reader.onload = ev => {
     const img = new Image();
-    img.onload = function(){
-      importedImage = img;
-      importOffsetX = 0;
-      importOffsetY = 0;
-      // Show preview
-      const prev = document.getElementById('importPreview');
-      prev.src = ev.target.result;
-      prev.style.display = 'block';
-      drawMockup();
+    img.onload = () => {
+      mkpSaveHistory();
+      mkpLayers.push({
+        type:'image', img,
+        x: mkpCanvasW/2, y: mkpCanvasH/2,
+        size: 80, opacity: 1, color: mkpColor
+      });
+      mkpSelected = mkpLayers.length - 1;
+      mkpRedraw();
     };
     img.src = ev.target.result;
   };
   reader.readAsDataURL(file);
+  e.target.value = '';
 }
 
-function movePrint(dx, dy){
-  importOffsetX += dx;
-  importOffsetY += dy;
-  drawMockup();
+// ── Tool selection ──
+function mkpSetTool(tool, el){
+  mkpTool = tool;
+  document.querySelectorAll('.mkp-tool-btn[id^="tool"]').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('mkpTextPanel').style.display = tool==='text' ? 'block' : 'none';
+  document.getElementById('mkpArtPanel').style.display  = tool==='art'  ? 'block' : 'none';
 }
 
-// drawMockup handles import mode inline (see above)
+// ── Add text layer ──
+function mkpAddText(){
+  const val = document.getElementById('mkpTextVal').value.trim() || 'BROKEWEAR';
+  mkpSaveHistory();
+  mkpLayers.push({
+    type:'text', text: val,
+    x: mkpCanvasW/2, y: mkpCanvasH/2,
+    size: 40, opacity: 1, color: mkpColor,
+    fontStyle: document.getElementById('mkpFontStyle').value
+  });
+  mkpSelected = mkpLayers.length - 1;
+  mkpRedraw();
+}
 
-// import mode resets handled in openAddModal/openEditModal
+// ── Add art layer from toolbar click ──
+function mkpAddArt(){
+  mkpSaveHistory();
+  mkpLayers.push({
+    type:'art',
+    style: document.getElementById('mkpArtStyle').value,
+    x: mkpCanvasW/2, y: mkpCanvasH/2,
+    size: 60, opacity: 1, color: mkpColor
+  });
+  mkpSelected = mkpLayers.length - 1;
+  mkpRedraw();
+}
+
+// ── Main draw ──
+function mkpRedraw(){
+  const canvas = document.getElementById('mockupCanvas');
+  if(!canvas || !mkpBgImage) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,mkpCanvasW,mkpCanvasH);
+
+  // Draw background shirt photo
+  ctx.drawImage(mkpBgImage, 0, 0, mkpCanvasW, mkpCanvasH);
+
+  // Draw each layer
+  mkpLayers.forEach((layer, idx) => {
+    ctx.save();
+    ctx.globalAlpha = layer.opacity;
+    const isSelected = idx === mkpSelected;
+
+    if(layer.type === 'text'){
+      const sz = (document.getElementById('mkpSize').value/60) * layer.size;
+      const style = layer.fontStyle || 'bold uppercase';
+      const isBold = style.includes('bold');
+      const isItalic = style.includes('italic');
+      const isUpper = style.includes('uppercase');
+      ctx.font = `${isItalic?'italic ':''} ${isBold?'bold ':''} ${sz}px 'DM Sans', sans-serif`;
+      ctx.fillStyle = layer.color || mkpColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowColor = 'rgba(0,0,0,0.25)';
+      ctx.shadowBlur = 4;
+      ctx.fillText(isUpper ? layer.text.toUpperCase() : layer.text, layer.x, layer.y);
+    }
+    else if(layer.type === 'art'){
+      const sz = parseInt(document.getElementById('mkpSize').value);
+      drawArtLayer(ctx, layer.x, layer.y, sz, layer.color || mkpColor, layer.style);
+    }
+    else if(layer.type === 'image'){
+      const sz = parseInt(document.getElementById('mkpSize').value);
+      const asp = layer.img.width / layer.img.height;
+      const iw = sz * (asp >= 1 ? 1 : asp);
+      const ih = sz * (asp >= 1 ? 1/asp : 1);
+      ctx.shadowColor='rgba(0,0,0,0.2)'; ctx.shadowBlur=6;
+      ctx.drawImage(layer.img, layer.x - iw/2, layer.y - ih/2, iw, ih);
+    }
+
+    // Selection ring
+    if(isSelected){
+      ctx.globalAlpha = 0.5;
+      ctx.strokeStyle = '#7F77DD';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4,4]);
+      const r = parseInt(document.getElementById('mkpSize').value) * 0.65;
+      ctx.beginPath();
+      ctx.arc(layer.x, layer.y, r + 8, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+  });
+
+  // Save as mockup data
+  const dataUrl = canvas.toDataURL('image/png');
+  mockupData = dataUrl;
+  // Update active slot data + refresh thumb
+  if(mkpSlots.length){
+    mkpSlots[mkpActiveSlot].data = dataUrl;
+    mkpSlots[mkpActiveSlot].layers = mkpLayers;
+    // Update active thumb src live
+    const thumbs = document.querySelectorAll('#mkpStrip .mkp-thumb img');
+    if(thumbs[mkpActiveSlot]) thumbs[mkpActiveSlot].src = dataUrl;
+  }
+}
+
+function drawArtLayer(ctx, cx, cy, sz, color, style){
+  ctx.strokeStyle = color; ctx.fillStyle = color;
+  ctx.shadowColor = 'rgba(0,0,0,0.2)'; ctx.shadowBlur = 3;
+  if(style === 'broken'){
+    ctx.lineWidth = 2; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(cx-sz,cy); ctx.lineTo(cx-sz*0.3,cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx+sz*0.3,cy); ctx.lineTo(cx+sz,cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx,cy-sz); ctx.lineTo(cx,cy-sz*0.3); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx,cy+sz*0.3); ctx.lineTo(cx,cy+sz); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx,cy,sz*0.28,0,Math.PI*2); ctx.lineWidth=1.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx,cy,sz*0.5,0,Math.PI*2); ctx.globalAlpha=0.3; ctx.stroke();
+    ctx.globalAlpha=1;
+    ctx.beginPath(); ctx.arc(cx-sz*0.3,cy,3,0,Math.PI*2); ctx.fill();
+  } else if(style === 'circle'){
+    for(let r=sz*0.15; r<=sz*0.8; r+=sz*0.2){
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.globalAlpha = 1 - r/(sz*1.2); ctx.lineWidth=1.5; ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+  } else if(style === 'wave'){
+    ctx.lineWidth=2; ctx.lineCap='round';
+    for(let row=-2;row<=2;row++){
+      ctx.beginPath(); ctx.globalAlpha=1-Math.abs(row)*0.18;
+      for(let x=-sz;x<=sz;x++){
+        const y=Math.sin((x+row*8)*0.12)*sz*0.18+row*sz*0.22;
+        x===-sz ? ctx.moveTo(cx+x,cy+y) : ctx.lineTo(cx+x,cy+y);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+  } else if(style === 'cross'){
+    ctx.lineWidth=2; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(cx-sz,cy); ctx.lineTo(cx+sz,cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx,cy-sz); ctx.lineTo(cx,cy+sz); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx,cy,sz*0.3,0,Math.PI*2); ctx.lineWidth=1.5; ctx.stroke();
+  } else if(style === 'diamond'){
+    ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(cx,cy-sz); ctx.lineTo(cx+sz*0.6,cy); ctx.lineTo(cx,cy+sz); ctx.lineTo(cx-sz*0.6,cy); ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx,cy-sz*0.5); ctx.lineTo(cx+sz*0.3,cy); ctx.lineTo(cx,cy+sz*0.5); ctx.lineTo(cx-sz*0.3,cy); ctx.closePath();
+    ctx.globalAlpha=0.15; ctx.fill(); ctx.globalAlpha=1; ctx.stroke();
+  }
+}
+
+// ── Drag to move layers ──
+function mkpGetCanvas(){ return document.getElementById('mockupCanvas'); }
+
+function mkpCanvasPos(e){
+  const canvas = mkpGetCanvas();
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = mkpCanvasW / rect.width;
+  const scaleY = mkpCanvasH / rect.height;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x:(clientX-rect.left)*scaleX, y:(clientY-rect.top)*scaleY };
+}
+
+function mkpHitTest(px, py){
+  const sz = parseInt(document.getElementById('mkpSize').value);
+  for(let i=mkpLayers.length-1; i>=0; i--){
+    const l = mkpLayers[i];
+    const dist = Math.sqrt((px-l.x)**2+(py-l.y)**2);
+    if(dist < sz*0.8) return i;
+  }
+  return null;
+}
+
+function mkpOnMouseDown(e){
+  if(!mkpBgImage) return;
+  const pos = mkpCanvasPos(e);
+  const hit = mkpHitTest(pos.x, pos.y);
+  if(hit !== null){
+    mkpSelected = hit;
+    mkpDragging = true;
+    mkpDragOffX = pos.x - mkpLayers[hit].x;
+    mkpDragOffY = pos.y - mkpLayers[hit].y;
+  } else {
+    mkpSelected = null;
+    if(mkpTool === 'text') mkpAddText();
+    else if(mkpTool === 'art'){
+      mkpSaveHistory();
+      mkpLayers.push({ type:'art', style:document.getElementById('mkpArtStyle').value, x:pos.x, y:pos.y, size:60, opacity:1, color:mkpColor });
+      mkpSelected = mkpLayers.length-1;
+    }
+  }
+  mkpRedraw();
+}
+
+function mkpOnMouseMove(e){
+  if(!mkpDragging || mkpSelected===null) return;
+  e.preventDefault();
+  const pos = mkpCanvasPos(e);
+  mkpLayers[mkpSelected].x = pos.x - mkpDragOffX;
+  mkpLayers[mkpSelected].y = pos.y - mkpDragOffY;
+  mkpRedraw();
+}
+
+function mkpOnMouseUp(){ mkpDragging = false; }
+
+function mkpOnScroll(e){
+  if(mkpSelected===null) return;
+  e.preventDefault();
+  const sl = document.getElementById('mkpSize');
+  let val = parseInt(sl.value) + (e.deltaY < 0 ? 5 : -5);
+  val = Math.max(10, Math.min(200, val));
+  sl.value = val;
+  mkpRedraw();
+}
+
+// ── Undo ──
+function mkpSaveHistory(){
+  mkpHistory.push(JSON.stringify(mkpLayers));
+  if(mkpHistory.length>20) mkpHistory.shift();
+  if(mkpSlots.length) mkpSlots[mkpActiveSlot].history = mkpHistory;
+}
+function mkpUndo(){
+  if(!mkpHistory.length) return;
+  const prev = mkpHistory.pop();
+  mkpLayers = JSON.parse(prev);
+  if(mkpSlots.length) mkpSlots[mkpActiveSlot].layers = mkpLayers;
+  mkpSelected = null;
+  mkpRedraw();
+  showToast('Undo done');
+}
+function mkpClearLayers(){
+  mkpSaveHistory(); mkpLayers=[];
+  if(mkpSlots.length) mkpSlots[mkpActiveSlot].layers = mkpLayers;
+  mkpSelected=null; mkpRedraw(); showToast('Canvas cleared');
+}
+
+// ── Reset mockup UI ──
+function mkpReset(product){
+  mkpBgImage=null; mkpLayers=[]; mkpHistory=[]; mkpSelected=null; mkpDragging=false;
+  mkpSlots=[]; mkpActiveSlot=0;
+  mockupData = product ? (product.mockupImg||null) : null;
+  const canvas = document.getElementById('mockupCanvas');
+  if(canvas){ canvas.style.display='none'; const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,500,500); }
+  document.getElementById('mkpDropZone').style.display='flex';
+  document.getElementById('mkpToolbar').style.display='none';
+  document.getElementById('mkpControls').style.display='none';
+  mkpRebuildStrip();
+  // If product has saved mockups, restore them
+  const saved = product && product.mockupImgs;
+  const single = product && product.mockupImg;
+  const sources = saved ? saved : (single ? [single] : []);
+  if(sources.length){
+    let loaded=0;
+    sources.forEach(src=>{
+      const img=new Image();
+      img.onload=()=>{
+        mkpSlots.push({img, layers:[], history:[], data:src});
+        loaded++;
+        if(loaded===sources.length){
+          mkpActiveSlot=0;
+          mkpSyncFromSlot();
+          mkpRebuildStrip();
+          mkpShowCanvas();
+          mkpBuildSwatches();
+          mkpRedraw();
+        }
+      };
+      img.src=src;
+    });
+  }
+}
+
+// ── Canvas event binding ──
+function mkpBindCanvas(){
+  const canvas = document.getElementById('mockupCanvas');
+  if(!canvas) return;
+  canvas.addEventListener('mousedown', mkpOnMouseDown);
+  canvas.addEventListener('mousemove', mkpOnMouseMove);
+  canvas.addEventListener('mouseup', mkpOnMouseUp);
+  canvas.addEventListener('mouseleave', mkpOnMouseUp);
+  canvas.addEventListener('wheel', mkpOnScroll, {passive:false});
+  canvas.addEventListener('touchstart', mkpOnMouseDown, {passive:true});
+  canvas.addEventListener('touchmove', mkpOnMouseMove, {passive:false});
+  canvas.addEventListener('touchend', mkpOnMouseUp);
+}
+mkpBindCanvas();
+
+// Also auto-add art when art tool is selected and + Add clicked
+document.addEventListener('DOMContentLoaded', ()=>{
+  const artStyle = document.getElementById('mkpArtStyle');
+  if(artStyle) artStyle.addEventListener('change', ()=>{ if(mkpTool==='art') mkpRedraw(); });
+});
+
+function drawMockup(){
+  if(mkpBgImage) mkpRedraw();
+  const canvas = document.getElementById('mockupCanvas');
+  if(canvas && mkpBgImage) mockupData = canvas.toDataURL('image/png');
+}
+
+function downloadMockup(){
+  const canvas = document.getElementById('mockupCanvas');
+  if(!canvas || !mkpBgImage){ showToast('Upload a mockup first!', true); return; }
+  mkpRedraw();
+  const a = document.createElement('a');
+  const name = (document.getElementById('fName').value.trim()||'product').toLowerCase().replace(/\s+/g,'_');
+  a.download = name + '_mockup.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+  showToast('Mockup downloaded!');
+}
 
 </script>
 </body>

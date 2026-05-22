@@ -1064,9 +1064,20 @@
 
     grid.innerHTML = active.map((p, i) => `
       <div class="product-card reveal" style="animation-delay:${i * 0.07}s">
-        ${p.mockupImg
-          ? `<div class="product-mockup-img" style="width:100%;height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;background:rgba(245,243,238,0.03);border-radius:4px;overflow:hidden;border:0.5px solid rgba(245,243,238,0.06);">
-               <img src="${p.mockupImg}" alt="${p.name}" style="height:145px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));" loading="lazy"/>
+        ${(p.mockupImgs && p.mockupImgs.length) || p.mockupImg
+          ? `<div class="product-gallery" style="position:relative;width:100%;height:180px;margin-bottom:1rem;border-radius:4px;overflow:hidden;background:rgba(245,243,238,0.03);border:0.5px solid rgba(245,243,238,0.06);">
+               ${((p.mockupImgs && p.mockupImgs.length) ? p.mockupImgs : [p.mockupImg]).map((src,gi)=>`
+                 <img src="${src}" alt="${p.name} view ${gi+1}"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));transition:opacity 0.4s;opacity:${gi===0?1:0};"
+                   class="gallery-slide" data-gidx="${gi}" loading="lazy"/>
+               `).join('')}
+               ${((p.mockupImgs && p.mockupImgs.length > 1) || false)
+                 ? `<div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:5px;">
+                     ${(p.mockupImgs||[p.mockupImg]).map((_,di)=>`<div class="gallery-dot${di===0?' gd-active':''}" data-dot="${di}" style="width:6px;height:6px;border-radius:50%;background:${di===0?'rgba(127,119,221,1)':'rgba(245,243,238,0.3)'};cursor:pointer;transition:background 0.3s;"></div>`).join('')}
+                   </div>
+                   <button onclick="event.stopPropagation();galleryPrev(this)" style="position:absolute;left:4px;top:50%;transform:translateY(-50%);background:rgba(17,17,17,0.5);border:none;color:white;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;">‹</button>
+                   <button onclick="event.stopPropagation();galleryNext(this)" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);background:rgba(17,17,17,0.5);border:none;color:white;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;">›</button>`
+                 : ''}
              </div>`
           : `<div class="product-num">${String(i + 1).padStart(2, '0')}</div>
              <div class="product-icon">${p.icon || '👕'}</div>`
@@ -1096,6 +1107,30 @@
     openModal();
   }
 
+
+  // ── Product image gallery ──
+  function galleryGo(card, dir){
+    const slides = card.querySelectorAll('.gallery-slide');
+    const dots = card.querySelectorAll('.gallery-dot');
+    if(!slides.length) return;
+    let cur = 0;
+    slides.forEach((s,i)=>{ if(parseFloat(s.style.opacity)>0.5) cur=i; });
+    slides[cur].style.opacity='0';
+    if(dots[cur]) dots[cur].style.background='rgba(245,243,238,0.3)', dots[cur].classList.remove('gd-active');
+    cur = (cur + dir + slides.length) % slides.length;
+    slides[cur].style.opacity='1';
+    if(dots[cur]) dots[cur].style.background='rgba(127,119,221,1)', dots[cur].classList.add('gd-active');
+  }
+  function galleryNext(btn){ galleryGo(btn.closest('.product-gallery'), 1); }
+  function galleryPrev(btn){ galleryGo(btn.closest('.product-gallery'), -1); }
+
+  // Auto-advance galleries every 3s
+  setInterval(()=>{
+    document.querySelectorAll('.product-gallery').forEach(g=>{
+      const slides = g.querySelectorAll('.gallery-slide');
+      if(slides.length > 1) galleryGo(g, 1);
+    });
+  }, 3000);
   // Run on page load
   loadProducts();
 
